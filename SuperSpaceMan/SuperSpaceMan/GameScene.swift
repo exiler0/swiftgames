@@ -104,5 +104,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             nodeB.removeFromParent()
         }
     }
+
+    override func update(currentTime: NSTimeInterval) {
+        backgroundNode!.position =
+            CGPointMake(backgroundNode!.position.x,
+            -((playerNode!.position.y - 180.0)/8))
+
+        foregroundNode!.position =
+            CGPointMake(foregroundNode!.position.x,
+            -(playerNode!.position.y - 180.0))
+    }
 }
 
