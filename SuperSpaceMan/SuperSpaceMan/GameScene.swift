@@ -11,6 +11,7 @@ class GameScene: SKScene {
     
     let backgroundNode : SKSpriteNode?
     var playerNode : SKSpriteNode?
+    let orbNode : SKSpriteNode?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -39,7 +40,15 @@ class GameScene: SKScene {
         
         playerNode!.position = CGPoint(x: size.width / 2.0, y: 80.0)
         playerNode!.physicsBody!.linearDamping = 1.0
+        playerNode!.physicsBody!.allowsRotation = false
         addChild(playerNode!)
+        
+        orbNode = SKSpriteNode(imageNamed: "PowerUp")
+        orbNode!.position = CGPoint(x: 150.0, y: size.height - 25)
+        orbNode!.physicsBody =
+            SKPhysicsBody(circleOfRadius: orbNode!.size.width / 2)
+        orbNode!.physicsBody!.dynamic = false
+        addChild(orbNode!)
         
     }
     
