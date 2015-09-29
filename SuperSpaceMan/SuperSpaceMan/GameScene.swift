@@ -32,7 +32,13 @@ class GameScene: SKScene {
         playerNode!.position = CGPoint(x: size.width / 2.0, y: 80.0)
         addChild(playerNode!)
         
-        playerNode!.position = CGPoint(x: size.width, y: size.height)
-        playerNode!.anchorPoint = CGPoint(x: 1.0, y: 1.0)
+        playerNode!.physicsBody =
+            SKPhysicsBody(circleOfRadius: playerNode!.size.width / 2)
+        playerNode!.physicsBody!.dynamic = true
+        
+        physicsWorld.gravity = CGVectorMake(0.0, -2.0);
+        
+//        playerNode!.position = CGPoint(x: size.width, y: size.height)
+//        playerNode!.anchorPoint = CGPoint(x: 1.0, y: 1.0)
     }
 }
