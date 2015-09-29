@@ -7,7 +7,7 @@
 //
 
 import SpriteKit
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
     let backgroundNode : SKSpriteNode?
     var playerNode : SKSpriteNode?
@@ -19,6 +19,7 @@ class GameScene: SKScene {
 
     override init(size: CGSize) {
         super.init(size: size)
+        physicsWorld.contactDelegate = self
         
         backgroundColor = SKColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
         
@@ -54,5 +55,9 @@ class GameScene: SKScene {
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
             playerNode!.physicsBody!.applyImpulse(CGVectorMake(0.0, 40.0))
+    }
+
+    func didBeginContact(contact: SKPhysicsContact!) {
+            println("There has been contact.")
     }
 }

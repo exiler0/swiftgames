@@ -6,31 +6,35 @@
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>C4B322B2-13D0-41AD-9DD6-42787FF407F5</string>
+	<key>IDESourceControlProjectName</key>
+	<string>SuperSpaceMan</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>6C16C3FAE79F67CAC3BA5EE571C4E7C7DAB783FE</key>
-		<string>https://github.com/phommata/SuperSpaceMan.git</string>
+		<key>7703D63C754E0EF2B5443CCBB11F3B7882FC7DA0</key>
+		<string>https://github.com/phommata/swiftgames.git</string>
 	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>SuperSpaceMan/SuperSpaceMan.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>6C16C3FAE79F67CAC3BA5EE571C4E7C7DAB783FE</key>
-		<string>SuperSpaceMan/</string>
+		<key>7703D63C754E0EF2B5443CCBB11F3B7882FC7DA0</key>
+		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/phommata/SuperSpaceMan.git</string>
+	<string>https://github.com/phommata/swiftgames.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>6C16C3FAE79F67CAC3BA5EE571C4E7C7DAB783FE</string>
+	<string>7703D63C754E0EF2B5443CCBB11F3B7882FC7DA0</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>6C16C3FAE79F67CAC3BA5EE571C4E7C7DAB783FE</string>
+			<string>7703D63C754E0EF2B5443CCBB11F3B7882FC7DA0</string>
 			<key>IDESourceControlWCCName</key>
-			<string>SuperSpaceMan</string>
+			<string>swiftgames</string>
 		</dict>
 	</array>
 </dict>
