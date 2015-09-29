@@ -13,6 +13,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var playerNode : SKSpriteNode?
     let orbNode : SKSpriteNode?
     
+    let CollisionCategoryPlayer      : UInt32 = 0x1 << 1
+    let CollisionCategoryPowerUpOrbs : UInt32 = 0x1 << 2
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -22,7 +25,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         physicsWorld.contactDelegate = self
         
         backgroundColor = SKColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
-        
     
         userInteractionEnabled = true
         
@@ -42,6 +44,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         playerNode!.position = CGPoint(x: size.width / 2.0, y: 80.0)
         playerNode!.physicsBody!.linearDamping = 1.0
         playerNode!.physicsBody!.allowsRotation = false
+        playerNode!.physicsBody!.categoryBitMask = CollisionCategoryPlayer
+        playerNode!.physicsBody!.contactTestBitMask = CollisionCategoryPowerUpOrbs
+        playerNode!.physicsBody!.collisionBitMask = 0
         addChild(playerNode!)
         
         orbNode = SKSpriteNode(imageNamed: "PowerUp")
@@ -49,6 +54,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         orbNode!.physicsBody =
             SKPhysicsBody(circleOfRadius: orbNode!.size.width / 2)
         orbNode!.physicsBody!.dynamic = false
+        orbNode!.physicsBody!.categoryBitMask = CollisionCategoryPowerUpOrbs
+        orbNode!.physicsBody!.collisionBitMask = 0
         addChild(orbNode!)
         
     }
