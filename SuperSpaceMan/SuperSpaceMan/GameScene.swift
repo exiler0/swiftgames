@@ -21,6 +21,9 @@ class GameScene: SKScene {
         
         backgroundColor = SKColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
         
+    
+        userInteractionEnabled = true
+        
         // adding the background
         backgroundNode = SKSpriteNode(imageNamed: "Background")
         backgroundNode!.anchorPoint = CGPoint(x: 0.5, y: 0.0)
@@ -29,16 +32,18 @@ class GameScene: SKScene {
         
         // add the player
         playerNode = SKSpriteNode(imageNamed: "Player")
-        playerNode!.position = CGPoint(x: size.width / 2.0, y: 80.0)
-        addChild(playerNode!)
         
         playerNode!.physicsBody =
             SKPhysicsBody(circleOfRadius: playerNode!.size.width / 2)
         playerNode!.physicsBody!.dynamic = true
         
-        physicsWorld.gravity = CGVectorMake(0.0, -2.0);
+        playerNode!.position = CGPoint(x: size.width / 2.0, y: 80.0)
+        playerNode!.physicsBody!.linearDamping = 1.0
+        addChild(playerNode!)
         
-//        playerNode!.position = CGPoint(x: size.width, y: size.height)
-//        playerNode!.anchorPoint = CGPoint(x: 1.0, y: 1.0)
+    }
+    
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+            playerNode!.physicsBody!.applyImpulse(CGVectorMake(0.0, 40.0))
     }
 }
