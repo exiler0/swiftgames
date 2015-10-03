@@ -108,6 +108,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func addBlackHolesToForeground() {
+        let textureAtlas = SKTextureAtlas(named: "sprites.atlas")
+        
+        let frame0 = textureAtlas.textureNamed("BlackHole0")
+        let frame1 = textureAtlas.textureNamed("BlackHole1")
+        let frame2 = textureAtlas.textureNamed("BlackHole2")
+        let frame3 = textureAtlas.textureNamed("BlackHole3")
+        let frame4 = textureAtlas.textureNamed("BlackHole4")
+        
+        let blackHoleTextures = [frame0, frame1, frame2, frame3, frame4]
+        
+        let animateAction =
+            SKAction.animateWithTextures(blackHoleTextures, timePerFrame: 0.2)
+        let rotateAction = SKAction.repeatActionForever(animateAction)
+        
         let moveLeftAction = SKAction.moveToX(0.0, duration: 2.0)
         let moveRightAction = SKAction.moveToX(size.width, duration: 2.0)
         let actionSequence = SKAction.sequence([moveLeftAction, moveRightAction])
@@ -115,15 +129,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         for i in 1...10 {
             var blackHoleNode = SKSpriteNode(imageNamed: "BlackHole0")
+            
             blackHoleNode.position = CGPointMake(self.size.width - 80.0, 600.0 * CGFloat(i))
-            blackHoleNode.physicsBody = SKPhysicsBody(circleOfRadius: blackHoleNode.size.width / 2)
+            blackHoleNode.physicsBody =
+                SKPhysicsBody(circleOfRadius: blackHoleNode.size.width / 2)
             blackHoleNode.physicsBody!.dynamic = false
             blackHoleNode.physicsBody!.categoryBitMask = CollisionCategoryBlackHoles
             blackHoleNode.physicsBody!.collisionBitMask = 0
             blackHoleNode.name = "BLACK_HOLE"
+            
             blackHoleNode.runAction(moveAction)
-        
-            self.foregroundNode!.addChild(blackHoleNode)
+            blackHoleNode.runAction(rotateAction)
+            
+            foregroundNode!.addChild(blackHoleNode)
         }
     }
     
