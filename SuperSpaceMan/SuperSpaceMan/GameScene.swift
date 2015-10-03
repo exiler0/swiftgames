@@ -22,7 +22,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     let CollisionCategoryPlayer      : UInt32 = 0x1 << 1
     let CollisionCategoryPowerUpOrbs : UInt32 = 0x1 << 2
-
+    let CollisionCategoryBlackHoles  : UInt32 = 0x1 << 3
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -58,7 +59,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         playerNode!.physicsBody!.linearDamping = 1.0
         playerNode!.physicsBody!.allowsRotation = false
         playerNode!.physicsBody!.categoryBitMask = CollisionCategoryPlayer
-        playerNode!.physicsBody!.contactTestBitMask = CollisionCategoryPowerUpOrbs
+        playerNode!.physicsBody!.contactTestBitMask =
+            CollisionCategoryPowerUpOrbs | CollisionCategoryBlackHoles
         playerNode!.physicsBody!.collisionBitMask = 0
         foregroundNode!.addChild(playerNode!)
     
@@ -73,37 +75,56 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
         })
     
+        addBlackHolesToForeground()
         addOrbsToForeground()
     }
     
     func addOrbsToForeground() {
-            var orbNodePosition = CGPoint(x: playerNode!.position.x, y: playerNode!.position.y + 100)
-            var orbXShift : CGFloat = -1.0
-        
-            for _ in 1...50 {
-                var orbNode = SKSpriteNode(imageNamed: "PowerUp")
+        var orbNodePosition = CGPoint(x: playerNode!.position.x, y: playerNode!.position.y + 100)
+        var orbXShift : CGFloat = -1.0
+    
+        for _ in 1...50 {
+            var orbNode = SKSpriteNode(imageNamed: "PowerUp")
 
-                if orbNodePosition.x - (orbNode.size.width * 2) <= 0 {
-            orbXShift = 1.0
-                }
-                
-                if orbNodePosition.x + orbNode.size.width >= self.size.width {
-                orbXShift = -1.0
-                }
-                
-                orbNodePosition.x += 40.0 * orbXShift
-                orbNodePosition.y += 120
-                orbNode.position = orbNodePosition
-                orbNode.physicsBody = SKPhysicsBody(circleOfRadius: orbNode.size.width / 2)
-                orbNode.physicsBody!.dynamic = false
-                
-                orbNode.physicsBody!.categoryBitMask = CollisionCategoryPowerUpOrbs
-                orbNode.physicsBody!.collisionBitMask = 0
-                orbNode.name = "POWER_UP_ORB"
-                
-                foregroundNode!.addChild(orbNode)
+            if orbNodePosition.x - (orbNode.size.width * 2) <= 0 {
+                orbXShift = 1.0
             }
             
+            if orbNodePosition.x + orbNode.size.width >= self.size.width {
+                orbXShift = -1.0
+            }
+            
+            orbNodePosition.x += 40.0 * orbXShift
+            orbNodePosition.y += 120
+            orbNode.position = orbNodePosition
+            orbNode.physicsBody = SKPhysicsBody(circleOfRadius: orbNode.size.width / 2)
+            orbNode.physicsBody!.dynamic = false
+            orbNode.physicsBody!.categoryBitMask = CollisionCategoryPowerUpOrbs
+            orbNode.physicsBody!.collisionBitMask = 0
+            orbNode.name = "POWER_UP_ORB"
+            
+            foregroundNode!.addChild(orbNode)
+        }
+    }
+    
+    func addBlackHolesToForeground() {
+        let moveLeftAction = SKAction.moveToX(0.0, duration: 2.0)
+        let moveRightAction = SKAction.moveToX(size.width, duration: 2.0)
+        let actionSequence = SKAction.sequence([moveLeftAction, moveRightAction])
+        let moveAction = SKAction.repeatActionForever(actionSequence)
+        
+        for i in 1...10 {
+            var blackHoleNode = SKSpriteNode(imageNamed: "BlackHole0")
+            blackHoleNode.position = CGPointMake(self.size.width - 80.0, 600.0 * CGFloat(i))
+            blackHoleNode.physicsBody = SKPhysicsBody(circleOfRadius: blackHoleNode.size.width / 2)
+            blackHoleNode.physicsBody!.dynamic = false
+            blackHoleNode.physicsBody!.categoryBitMask = CollisionCategoryBlackHoles
+            blackHoleNode.physicsBody!.collisionBitMask = 0
+            blackHoleNode.name = "BLACK_HOLE"
+            blackHoleNode.runAction(moveAction)
+        
+            self.foregroundNode!.addChild(blackHoleNode)
+        }
     }
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
@@ -137,6 +158,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if nodeB.name == "POWER_UP_ORB"  {
             impulseCount++
             nodeB.removeFromParent()
+        } else {
+            playerNode!.physicsBody!.contactTestBitMask = 0
+            impulseCount = 0
         }
     }
 
