@@ -7,6 +7,8 @@
 //
 
 import SpriteKit
+import CoreMotion
+
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     let backgroundNode : SKSpriteNode?
@@ -14,6 +16,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var playerNode : SKSpriteNode?
     
     var impulseCount = 4
+    
+    let coreMotionManager = CMMotionManager()
+    var xAxisAcceleration : CGFloat = 0.0
     
     let CollisionCategoryPlayer      : UInt32 = 0x1 << 1
     let CollisionCategoryPowerUpOrbs : UInt32 = 0x1 << 2
@@ -56,45 +61,75 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         playerNode!.physicsBody!.contactTestBitMask = CollisionCategoryPowerUpOrbs
         playerNode!.physicsBody!.collisionBitMask = 0
         foregroundNode!.addChild(playerNode!)
+    
+        self.coreMotionManager.accelerometerUpdateInterval = 0.3
+        self.coreMotionManager.startAccelerometerUpdatesToQueue(NSOperationQueue(), withHandler: {
+            (data: CMAccelerometerData!, error: NSError!) in
+                if let constVar = error {
+                    println("There was an error")
+                }
+                else {
+                    self.xAxisAcceleration = CGFloat(data!.acceleration.x)
+                }
+        })
+    
+        addOrbsToForeground()
+    }
+    
+    func addOrbsToForeground() {
+            var orbNodePosition = CGPoint(x: playerNode!.position.x, y: playerNode!.position.y + 100)
+            var orbXShift : CGFloat = -1.0
         
-        var orbNodePosition = CGPointMake(playerNode!.position.x,
-            playerNode!.position.y + 100)
-        for i in 0...19 {
-            var orbNode = SKSpriteNode(imageNamed: "PowerUp")
-            orbNodePosition.y += 140
-            orbNode.position = orbNodePosition
-            orbNode.physicsBody = SKPhysicsBody(circleOfRadius: orbNode.size.width / 2)
-            orbNode.physicsBody!.dynamic = false
-            orbNode.physicsBody!.categoryBitMask = CollisionCategoryPowerUpOrbs
-            orbNode.physicsBody!.collisionBitMask = 0
-            orbNode.name = "POWER_UP_ORB"
-            foregroundNode!.addChild(orbNode)
-        }
-        
-        orbNodePosition = CGPointMake(playerNode!.position.x + 50, orbNodePosition.y)
-        for i in 0...19 {
-            var orbNode = SKSpriteNode(imageNamed: "PowerUp")
-            orbNodePosition.y += 140
-            orbNode.position = orbNodePosition
-            orbNode.physicsBody = SKPhysicsBody(circleOfRadius: orbNode.size.width / 2)
-            orbNode.physicsBody!.dynamic = false
-            orbNode.physicsBody!.categoryBitMask = CollisionCategoryPowerUpOrbs
-            orbNode.physicsBody!.collisionBitMask = 0
-            orbNode.name = "POWER_UP_ORB"
-            foregroundNode!.addChild(orbNode)
-        }
+            for _ in 1...50 {
+                var orbNode = SKSpriteNode(imageNamed: "PowerUp")
+
+                if orbNodePosition.x - (orbNode.size.width * 2) <= 0 {
+            orbXShift = 1.0
+                }
+                
+                if orbNodePosition.x + orbNode.size.width >= self.size.width {
+                orbXShift = -1.0
+                }
+                
+                orbNodePosition.x += 40.0 * orbXShift
+                orbNodePosition.y += 120
+                orbNode.position = orbNodePosition
+                orbNode.physicsBody = SKPhysicsBody(circleOfRadius: orbNode.size.width / 2)
+                orbNode.physicsBody!.dynamic = false
+                
+                orbNode.physicsBody!.categoryBitMask = CollisionCategoryPowerUpOrbs
+                orbNode.physicsBody!.collisionBitMask = 0
+                orbNode.name = "POWER_UP_ORB"
+                
+                foregroundNode!.addChild(orbNode)
+            }
+            
     }
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
-            if !playerNode!.physicsBody!.dynamic {
-                playerNode!.physicsBody!.dynamic = true
-            }
-            
-            if impulseCount > 0 {
-                playerNode!.physicsBody!.applyImpulse(CGVectorMake(0.0, 40.0))
-                impulseCount--
-            }
+        if !playerNode!.physicsBody!.dynamic {
+
+            playerNode!.physicsBody!.dynamic = true
+
+            self.coreMotionManager.accelerometerUpdateInterval = 0.3
+            self.coreMotionManager.startAccelerometerUpdatesToQueue(NSOperationQueue(),
+            withHandler: {
+                (data: CMAccelerometerData!, error: NSError!) in
+
+                if let constVar = error {
+                    println("There was an error")
+                }
+                else {
+                    self.xAxisAcceleration = CGFloat(data!.acceleration.x)
+                }
+            })
+        }
+        if impulseCount > 0 {
+            playerNode!.physicsBody!.applyImpulse(CGVectorMake(0.0, 40.0))
+        impulseCount--
+        }
     }
+
 
     func didBeginContact(contact: SKPhysicsContact!) {
         var nodeB = contact!.bodyB!.node!
@@ -114,5 +149,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             CGPointMake(foregroundNode!.position.x,
             -(playerNode!.position.y - 180.0))
     }
+
+    override func didSimulatePhysics() {
+        self.playerNode!.physicsBody!.velocity =
+            CGVectorMake(self.xAxisAcceleration * 380.0,
+            self.playerNode!.physicsBody!.velocity.dy)
+
+        if playerNode!.position.x < -(playerNode!.size.width / 2) {
+            playerNode!.position =
+            CGPointMake(size.width - playerNode!.size.width / 2,
+            playerNode!.position.y);
+        }
+        else if self.playerNode!.position.x > self.size.width {
+            playerNode!.position = CGPointMake(playerNode!.size.width / 2,
+            playerNode!.position.y);
+        }
+    }
+
+    deinit {
+        self.coreMotionManager.stopAccelerometerUpdates()
+    }
+
 }
 
