@@ -12,6 +12,8 @@ import CoreMotion
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     let backgroundNode : SKSpriteNode?
+    let backgroundStarsNode  : SKSpriteNode?
+    let backgroundPlanetNode : SKSpriteNode?
     let foregroundNode : SKSpriteNode?
     var playerNode : SKSpriteNode?
     
@@ -45,6 +47,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         backgroundNode!.position = CGPoint(x: size.width / 2.0, y: 0.0)
         addChild(backgroundNode!)
     
+        backgroundStarsNode = SKSpriteNode(imageNamed: "Stars")
+        backgroundStarsNode!.anchorPoint = CGPoint(x: 0.5, y: 0.0)
+        backgroundStarsNode!.position = CGPoint(x: 160.0, y: 0.0)
+        addChild(backgroundStarsNode!)
+        
+        backgroundPlanetNode = SKSpriteNode(imageNamed: "PlanetStart")
+        backgroundPlanetNode!.anchorPoint = CGPoint(x: 0.5, y: 0.0)
+        backgroundPlanetNode!.position = CGPoint(x: 160.0, y: 0.0)
+        addChild(backgroundPlanetNode!)
+
         foregroundNode = SKSpriteNode()
         addChild(foregroundNode!)
     
@@ -55,8 +67,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             SKPhysicsBody(circleOfRadius: playerNode!.size.width / 2)
         playerNode!.physicsBody!.dynamic = false
         
-        playerNode!.position = CGPoint(x: self.size.width / 2.0, y: 180.0)
-        playerNode!.physicsBody!.linearDamping = 1.0
+        playerNode!.position = CGPoint(x: size.width / 2.0, y: 220.0)
+        playerNode!.physicsBody!.allowsRotation = false
         playerNode!.physicsBody!.allowsRotation = false
         playerNode!.physicsBody!.categoryBitMask = CollisionCategoryPlayer
         playerNode!.physicsBody!.contactTestBitMask =
@@ -179,6 +191,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         } else {
             playerNode!.physicsBody!.contactTestBitMask = 0
             impulseCount = 0
+
+            var colorizeAction = SKAction.colorizeWithColor(UIColor.redColor(),
+                colorBlendFactor: 1.0, duration: 1)
+            playerNode!.runAction(colorizeAction)
+    
         }
     }
 
@@ -186,6 +203,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         backgroundNode!.position =
             CGPointMake(backgroundNode!.position.x,
             -((playerNode!.position.y - 180.0)/8))
+
+        backgroundStarsNode!.position = CGPointMake(backgroundStarsNode!.position.x, -((playerNode!.position.y - 180.0)/6))
+
+        backgroundPlanetNode!.position =
+            CGPointMake(backgroundPlanetNode!.position.x,
+            -((playerNode!.position.y - 180.0)/8));
 
         foregroundNode!.position =
             CGPointMake(foregroundNode!.position.x,
