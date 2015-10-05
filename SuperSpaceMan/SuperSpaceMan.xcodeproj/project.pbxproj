@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B50A9A41BC2E152006229E4 /* EngineExhaust.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4B50A9A21BC2E152006229E4 /* EngineExhaust.sks */; };
+		4B50A9A51BC2E152006229E4 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B50A9A31BC2E152006229E4 /* spark.png */; };
 		4B50EE401BB88DA8006C7C8D /* sprites.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 4B50EE3F1BB88DA8006C7C8D /* sprites.atlas */; };
 		4BB634C01BB3299200A1D181 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB634BF1BB3299200A1D181 /* AppDelegate.swift */; };
 		4BB634C41BB3299200A1D181 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB634C31BB3299200A1D181 /* GameScene.swift */; };
@@ -28,6 +30,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4B50A9A21BC2E152006229E4 /* EngineExhaust.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EngineExhaust.sks; sourceTree = "<group>"; };
+		4B50A9A31BC2E152006229E4 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		4B50EE3F1BB88DA8006C7C8D /* sprites.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = sprites.atlas; path = "../../../../Google Drive/iOS Development Books/Swift Game Development/Beginning Swift Games Development for iOS/Swift 1.2 updated code/chapter1/SuperSpaceMan/SuperSpaceMan/sprites.atlas"; sourceTree = "<group>"; };
 		4BB634BA1BB3299200A1D181 /* SuperSpaceMan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperSpaceMan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BB634BE1BB3299200A1D181 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -83,6 +87,8 @@
 			children = (
 				4BB634BF1BB3299200A1D181 /* AppDelegate.swift */,
 				4BB634C31BB3299200A1D181 /* GameScene.swift */,
+				4B50A9A21BC2E152006229E4 /* EngineExhaust.sks */,
+				4B50A9A31BC2E152006229E4 /* spark.png */,
 				4B50EE3F1BB88DA8006C7C8D /* sprites.atlas */,
 				4BB634C51BB3299200A1D181 /* GameViewController.swift */,
 				4BB634C71BB3299200A1D181 /* Main.storyboard */,
@@ -199,7 +205,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BB634CE1BB3299200A1D181 /* LaunchScreen.xib in Resources */,
+				4B50A9A51BC2E152006229E4 /* spark.png in Resources */,
 				4BB634CB1BB3299200A1D181 /* Images.xcassets in Resources */,
+				4B50A9A41BC2E152006229E4 /* EngineExhaust.sks in Resources */,
 				4B50EE401BB88DA8006C7C8D /* sprites.atlas in Resources */,
 				4BB634C91BB3299200A1D181 /* Main.storyboard in Resources */,
 			);
