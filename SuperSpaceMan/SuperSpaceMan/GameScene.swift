@@ -26,6 +26,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let CollisionCategoryPowerUpOrbs : UInt32 = 0x1 << 2
     let CollisionCategoryBlackHoles  : UInt32 = 0x1 << 3
     
+    let engineExhaust : SKEmitterNode?
+    var exhaustTimer : NSTimer?
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -87,6 +90,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
         })
     
+        let engineExhaustPath =
+            NSBundle.mainBundle().pathForResource("EngineExhaust", ofType: "sks")
+        engineExhaust =
+            NSKeyedUnarchiver.unarchiveObjectWithFile(engineExhaustPath!) as? SKEmitterNode
+        engineExhaust!.position =
+            CGPointMake(0.0, -(playerNode!.size.height / 2))
+        
+        playerNode!.addChild(engineExhaust!)
+        engineExhaust!.hidden = true;
+
         addBlackHolesToForeground()
         addOrbsToForeground()
     }
@@ -164,7 +177,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
             self.coreMotionManager.accelerometerUpdateInterval = 0.3
             self.coreMotionManager.startAccelerometerUpdatesToQueue(NSOperationQueue(),
-            withHandler: {
+                withHandler: {
+            
                 (data: CMAccelerometerData!, error: NSError!) in
 
                 if let constVar = error {
@@ -175,9 +189,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
             })
         }
+
         if impulseCount > 0 {
             playerNode!.physicsBody!.applyImpulse(CGVectorMake(0.0, 40.0))
-        impulseCount--
+            impulseCount--
+    
+            engineExhaust!.hidden = false
+ 
+            NSTimer.scheduledTimerWithTimeInterval(0.5, target: self,
+                    selector: "hideEngineExaust:",
+                    userInfo: nil,
+                    repeats: false)
         }
     }
 
@@ -233,6 +255,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     deinit {
         self.coreMotionManager.stopAccelerometerUpdates()
+    }
+
+    func hideEngineExaust(timer:NSTimer!) {
+        if !engineExhaust!.hidden {
+            engineExhaust!.hidden = true
+        }
     }
 
 }
