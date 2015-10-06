@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>9CA10AB3-C89C-4493-9515-7B5AEAA9F450</string>
+	<key>IDESourceControlProjectName</key>
+	<string>SKLabelNodes_experiment</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>7703D63C754E0EF2B5443CCBB11F3B7882FC7DA0</key>
+		<string>https://github.com/phommata/swiftgames.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>SKLabelNodes_experiment/SKLabelNodes_experiment.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>7703D63C754E0EF2B5443CCBB11F3B7882FC7DA0</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/phommata/swiftgames.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>7703D63C754E0EF2B5443CCBB11F3B7882FC7DA0</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>7703D63C754E0EF2B5443CCBB11F3B7882FC7DA0</string>
+			<key>IDESourceControlWCCName</key>
+			<string>swiftgames</string>
+		</dict>
+	</array>
+</dict>
+</plist>
