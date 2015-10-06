@@ -16,6 +16,9 @@ class GameScene: SKScene {
         simpleLabel.text = "Hello, Sprite Kit!"
         simpleLabel.fontSize = 40
         simpleLabel.position = CGPoint(x: size.width / 2.0, y: size.height / 2.0)
+        
+        simpleLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
+        
         addChild(simpleLabel)
     }
     
