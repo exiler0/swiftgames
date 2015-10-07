@@ -15,9 +15,11 @@ class GameScene: SKScene {
         let simpleLabel = SKLabelNode(fontNamed: "Copperplate")
         simpleLabel.text = "Hello, Sprite Kit!"
         simpleLabel.fontSize = 40
-        simpleLabel.position = CGPoint(x: size.width / 2.0, y: size.height / 2.0)
+        simpleLabel.position =
+            CGPoint(x: size.width / 2.0,
+                    y: frame.height - simpleLabel.frame.height)
         
-        simpleLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Right
+        simpleLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Center
         
         addChild(simpleLabel)
     }
