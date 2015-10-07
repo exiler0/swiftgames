@@ -119,6 +119,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         impulseTextNode.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
         addChild(impulseTextNode)
 
+        let orbPopAction = SKAction.playSoundFileNamed("orb_pop.wav",
+            waitForCompletion: false)
+
         addBlackHolesToForeground()
         addOrbsToForeground()
     }
@@ -227,8 +230,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         var nodeB = contact!.bodyB!.node!
 
         if nodeB.name == "POWER_UP_ORB"  {
-            impulseCount++
-
+            impulseTextNode.text = "IMPULSES : \(impulseCount)"
+                
             impulseCount++
             impulseTextNode.text = "IMPULSES : \(impulseCount)"
 
