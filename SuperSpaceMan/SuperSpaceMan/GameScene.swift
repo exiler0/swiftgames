@@ -32,6 +32,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var score = 0
     let scoreTextNode = SKLabelNode(fontNamed: "Copperplate")
     
+    let impulseTextNode = SKLabelNode(fontNamed: "Copperplate")
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -109,7 +111,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreTextNode.position = CGPointMake(size.width - 10, size.height - 20)
         scoreTextNode.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Right
         addChild(scoreTextNode)
-        
+    
+        impulseTextNode.text = "IMPULSES : \(impulseCount)"
+        impulseTextNode.fontSize = 20
+        impulseTextNode.fontColor = SKColor.whiteColor()
+        impulseTextNode.position = CGPointMake(10.0, size.height - 20)
+        impulseTextNode.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
+        addChild(impulseTextNode)
+
         addBlackHolesToForeground()
         addOrbsToForeground()
     }
@@ -202,14 +211,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         if impulseCount > 0 {
             playerNode!.physicsBody!.applyImpulse(CGVectorMake(0.0, 40.0))
+
             impulseCount--
-    
+            impulseTextNode.text = "IMPULSES : \(impulseCount)"
+                
             engineExhaust!.hidden = false
  
             NSTimer.scheduledTimerWithTimeInterval(0.5, target: self,
-                    selector: "hideEngineExaust:",
-                    userInfo: nil,
-                    repeats: false)
+                    selector: "hideEngineExaust:", userInfo: nil, repeats: false)
         }
     }
 
@@ -219,6 +228,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         if nodeB.name == "POWER_UP_ORB"  {
             impulseCount++
+
+            impulseCount++
+            impulseTextNode.text = "IMPULSES : \(impulseCount)"
 
             score++
             scoreTextNode.text = "SCORE : \(score)"
