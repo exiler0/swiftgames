@@ -20,6 +20,7 @@ class GameScene: SKScene {
                     y: frame.height - simpleLabel.frame.height)
         
         simpleLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Center
+        simpleLabel.verticalAlignmentMode = SKLabelVerticalAlignmentMode.Center
         
         addChild(simpleLabel)
     }
