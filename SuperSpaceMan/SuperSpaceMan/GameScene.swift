@@ -29,6 +29,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let engineExhaust : SKEmitterNode?
     var exhaustTimer : NSTimer?
 
+    var score = 0
+    let scoreTextNode = SKLabelNode(fontNamed: "Copperplate")
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -100,6 +103,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         playerNode!.addChild(engineExhaust!)
         engineExhaust!.hidden = true;
 
+        scoreTextNode.text = "SCORE : \(score)"
+        scoreTextNode.fontSize = 20
+        scoreTextNode.fontColor = SKColor.whiteColor()
+        scoreTextNode.position = CGPointMake(size.width - 10, size.height - 20)
+        scoreTextNode.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Right
+        addChild(scoreTextNode)
+        
         addBlackHolesToForeground()
         addOrbsToForeground()
     }
@@ -209,6 +219,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         if nodeB.name == "POWER_UP_ORB"  {
             impulseCount++
+
+            score++
+            scoreTextNode.text = "SCORE : \(score)"
+            
             nodeB.removeFromParent()
         } else {
             playerNode!.physicsBody!.contactTestBitMask = 0
