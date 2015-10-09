@@ -265,38 +265,53 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     override func update(currentTime: NSTimeInterval) {
                 
-        if playerNode!.position.y >= 180.0 &&
-           playerNode!.position.y < 6400.0 {
+        if playerNode != nil {
                 
-            backgroundNode!.position =
-                CGPointMake(backgroundNode!.position.x,
-                -((playerNode!.position.y - 180.0)/8))
+            if playerNode!.position.y >= 180.0 &&
+               playerNode!.position.y < 6400.0 {
                     
-            backgroundStarsNode!.position = CGPointMake(backgroundStarsNode!.position.x, -((playerNode!.position.y - 180.0)/6))
-            
-            backgroundPlanetNode!.position =
-                CGPointMake(backgroundPlanetNode!.position.x,
-                -((playerNode!.position.y - 180.0)/8));
-                    
-            foregroundNode!.position =
-                CGPointMake(foregroundNode!.position.x,
-                -(playerNode!.position.y - 180.0))
+                backgroundNode!.position =
+                    CGPointMake(backgroundNode!.position.x,
+                    -((playerNode!.position.y - 180.0)/8))
+                        
+                backgroundStarsNode!.position = CGPointMake(backgroundStarsNode!.position.x, -((playerNode!.position.y - 180.0)/6))
+                
+                backgroundPlanetNode!.position =
+                    CGPointMake(backgroundPlanetNode!.position.x,
+                    -((playerNode!.position.y - 180.0)/8));
+                        
+                foregroundNode!.position =
+                    CGPointMake(foregroundNode!.position.x,
+                    -(playerNode!.position.y - 180.0))
+                        
+            } else if playerNode!.position.y > 7000.0 {
+        
+                gameOverWithResult(true)
+                        
+            } else if playerNode!.position.y < 0.0 {
+        
+                gameOverWithResult(false)
+            }
         }
     }
 
     override func didSimulatePhysics() {
-        self.playerNode!.physicsBody!.velocity =
-            CGVectorMake(self.xAxisAcceleration * 380.0,
-            self.playerNode!.physicsBody!.velocity.dy)
+                        
+        if playerNode != nil {
+                
+            self.playerNode!.physicsBody!.velocity =
+                CGVectorMake(self.xAxisAcceleration * 380.0,
+                self.playerNode!.physicsBody!.velocity.dy)
 
-        if playerNode!.position.x < -(playerNode!.size.width / 2) {
-            playerNode!.position =
-            CGPointMake(size.width - playerNode!.size.width / 2,
-            playerNode!.position.y);
-        }
-        else if self.playerNode!.position.x > self.size.width {
-            playerNode!.position = CGPointMake(playerNode!.size.width / 2,
-            playerNode!.position.y);
+            if playerNode!.position.x < -(playerNode!.size.width / 2) {
+                playerNode!.position =
+                CGPointMake(size.width - playerNode!.size.width / 2,
+                playerNode!.position.y);
+            }
+            else if self.playerNode!.position.x > self.size.width {
+                playerNode!.position = CGPointMake(playerNode!.size.width / 2,
+                playerNode!.position.y);
+            }
         }
     }
 
@@ -310,5 +325,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
 
+    func gameOverWithResult(gameResult: Bool) {
+    
+        playerNode!.removeFromParent()
+        playerNode = nil
+    
+        if gameResult {
+    
+            println("YOU WON!")
+    
+        } else {
+    
+            println("YOU LOSE!")
+        }
+    }
 }
 
