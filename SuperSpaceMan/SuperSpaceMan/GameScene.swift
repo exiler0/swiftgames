@@ -206,6 +206,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         if !playerNode!.physicsBody!.dynamic {
 
+            startGameTextNode.removeFromParent()
+                
             playerNode!.physicsBody!.dynamic = true
 
             self.coreMotionManager.accelerometerUpdateInterval = 0.3
@@ -262,19 +264,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 
     override func update(currentTime: NSTimeInterval) {
-        backgroundNode!.position =
-            CGPointMake(backgroundNode!.position.x,
-            -((playerNode!.position.y - 180.0)/8))
-
-        backgroundStarsNode!.position = CGPointMake(backgroundStarsNode!.position.x, -((playerNode!.position.y - 180.0)/6))
-
-        backgroundPlanetNode!.position =
-            CGPointMake(backgroundPlanetNode!.position.x,
-            -((playerNode!.position.y - 180.0)/8));
-
-        foregroundNode!.position =
-            CGPointMake(foregroundNode!.position.x,
-            -(playerNode!.position.y - 180.0))
+                
+        if playerNode!.position.y >= 180.0 {
+                
+            backgroundNode!.position =
+                CGPointMake(backgroundNode!.position.x,
+                -((playerNode!.position.y - 180.0)/8))
+                    
+            backgroundStarsNode!.position = CGPointMake(backgroundStarsNode!.position.x, -((playerNode!.position.y - 180.0)/6))
+            
+            backgroundPlanetNode!.position =
+                CGPointMake(backgroundPlanetNode!.position.x,
+                -((playerNode!.position.y - 180.0)/8));
+                    
+            foregroundNode!.position =
+                CGPointMake(foregroundNode!.position.x,
+                -(playerNode!.position.y - 180.0))
+        }
     }
 
     override func didSimulatePhysics() {
