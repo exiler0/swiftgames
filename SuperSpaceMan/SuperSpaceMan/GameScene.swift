@@ -265,7 +265,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     override func update(currentTime: NSTimeInterval) {
                 
-        if playerNode!.position.y >= 180.0 {
+        if playerNode!.position.y >= 180.0 &&
+           playerNode!.position.y < 6400.0 {
                 
             backgroundNode!.position =
                 CGPointMake(backgroundNode!.position.x,
