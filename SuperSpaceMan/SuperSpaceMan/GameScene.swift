@@ -330,14 +330,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         playerNode!.removeFromParent()
         playerNode = nil
     
-        if gameResult {
-    
-            println("YOU WON!")
-    
-        } else {
-    
-            println("YOU LOSE!")
-        }
+        let transition = SKTransition.crossFadeWithDuration(2.0)
+        let menuScene = MenuScene(size: size,
+            gameResult: gameResult,
+            score: score)
+        view?.presentScene(menuScene, transition: transition)
     }
 }
 

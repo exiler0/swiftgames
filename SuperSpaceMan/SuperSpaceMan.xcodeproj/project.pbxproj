@@ -18,6 +18,7 @@
 		4BB634CB1BB3299200A1D181 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BB634CA1BB3299200A1D181 /* Images.xcassets */; };
 		4BB634CE1BB3299200A1D181 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BB634CC1BB3299200A1D181 /* LaunchScreen.xib */; };
 		4BB634DA1BB3299200A1D181 /* SuperSpaceManTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB634D91BB3299200A1D181 /* SuperSpaceManTests.swift */; };
+		4BF807B01BC83C2400D0D72B /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF807AF1BC83C2400D0D72B /* MenuScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		4BB634D31BB3299200A1D181 /* SuperSpaceManTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuperSpaceManTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BB634D81BB3299200A1D181 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4BB634D91BB3299200A1D181 /* SuperSpaceManTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperSpaceManTests.swift; sourceTree = "<group>"; };
+		4BF807AF1BC83C2400D0D72B /* MenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 				4BB634CA1BB3299200A1D181 /* Images.xcassets */,
 				4BB634CC1BB3299200A1D181 /* LaunchScreen.xib */,
 				4BB634BD1BB3299200A1D181 /* Supporting Files */,
+				4BF807AF1BC83C2400D0D72B /* MenuScene.swift */,
 			);
 			path = SuperSpaceMan;
 			sourceTree = "<group>";
@@ -232,6 +235,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BB634C41BB3299200A1D181 /* GameScene.swift in Sources */,
+				4BF807B01BC83C2400D0D72B /* MenuScene.swift in Sources */,
 				4BB634C61BB3299200A1D181 /* GameViewController.swift in Sources */,
 				4BB634C01BB3299200A1D181 /* AppDelegate.swift in Sources */,
 			);
