@@ -34,6 +34,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     let impulseTextNode = SKLabelNode(fontNamed: "Copperplate")
     
+    let startGameTextNode = SKLabelNode(fontNamed: "Copperplate")
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -94,6 +96,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     self.xAxisAcceleration = CGFloat(data!.acceleration.x)
                 }
         })
+        
+        addBlackHolesToForeground()
+        addOrbsToForeground()
     
         let engineExhaustPath =
             NSBundle.mainBundle().pathForResource("EngineExhaust", ofType: "sks")
@@ -121,9 +126,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         let orbPopAction = SKAction.playSoundFileNamed("orb_pop.wav",
             waitForCompletion: false)
-
-        addBlackHolesToForeground()
-        addOrbsToForeground()
+        
+        startGameTextNode.text = "TAP ANYWHERE TO START!"
+        startGameTextNode.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Center
+        startGameTextNode.verticalAlignmentMode = SKLabelVerticalAlignmentMode.Center
+        startGameTextNode.fontSize = 20
+        startGameTextNode.fontColor = SKColor.whiteColor()
+        startGameTextNode.position =
+            CGPoint(x: scene!.size.width / 2, y: scene!.size.height / 2)
+        addChild(startGameTextNode)
     }
     
     func addOrbsToForeground() {
