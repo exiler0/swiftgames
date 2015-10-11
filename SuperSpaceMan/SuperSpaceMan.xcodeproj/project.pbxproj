@@ -19,6 +19,10 @@
 		4BB634CE1BB3299200A1D181 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BB634CC1BB3299200A1D181 /* LaunchScreen.xib */; };
 		4BB634DA1BB3299200A1D181 /* SuperSpaceManTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB634D91BB3299200A1D181 /* SuperSpaceManTests.swift */; };
 		4BF807B01BC83C2400D0D72B /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF807AF1BC83C2400D0D72B /* MenuScene.swift */; };
+		4BF807B21BCAD1F700D0D72B /* SharedConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF807B11BCAD1F700D0D72B /* SharedConstants.swift */; };
+		4BF807B41BCAD25000D0D72B /* SpaceMan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF807B31BCAD25000D0D72B /* SpaceMan.swift */; };
+		4BF807B61BCAD3CC00D0D72B /* Orb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF807B51BCAD3CC00D0D72B /* Orb.swift */; };
+		4BF807B81BCAD75700D0D72B /* BlackHole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF807B71BCAD75700D0D72B /* BlackHole.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +52,10 @@
 		4BB634D81BB3299200A1D181 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4BB634D91BB3299200A1D181 /* SuperSpaceManTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperSpaceManTests.swift; sourceTree = "<group>"; };
 		4BF807AF1BC83C2400D0D72B /* MenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
+		4BF807B11BCAD1F700D0D72B /* SharedConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedConstants.swift; sourceTree = "<group>"; };
+		4BF807B31BCAD25000D0D72B /* SpaceMan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpaceMan.swift; sourceTree = "<group>"; };
+		4BF807B51BCAD3CC00D0D72B /* Orb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Orb.swift; sourceTree = "<group>"; };
+		4BF807B71BCAD75700D0D72B /* BlackHole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlackHole.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +100,9 @@
 				4BB634BF1BB3299200A1D181 /* AppDelegate.swift */,
 				4B62FF8F1BC5B777008BEAEA /* orb_pop.wav */,
 				4BB634C31BB3299200A1D181 /* GameScene.swift */,
+				4BF807B71BCAD75700D0D72B /* BlackHole.swift */,
+				4BF807B51BCAD3CC00D0D72B /* Orb.swift */,
+				4BF807B31BCAD25000D0D72B /* SpaceMan.swift */,
 				4B50A9A21BC2E152006229E4 /* EngineExhaust.sks */,
 				4B50A9A31BC2E152006229E4 /* spark.png */,
 				4B50EE3F1BB88DA8006C7C8D /* sprites.atlas */,
@@ -101,6 +112,7 @@
 				4BB634CC1BB3299200A1D181 /* LaunchScreen.xib */,
 				4BB634BD1BB3299200A1D181 /* Supporting Files */,
 				4BF807AF1BC83C2400D0D72B /* MenuScene.swift */,
+				4BF807B11BCAD1F700D0D72B /* SharedConstants.swift */,
 			);
 			path = SuperSpaceMan;
 			sourceTree = "<group>";
@@ -234,10 +246,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BF807B61BCAD3CC00D0D72B /* Orb.swift in Sources */,
 				4BB634C41BB3299200A1D181 /* GameScene.swift in Sources */,
+				4BF807B21BCAD1F700D0D72B /* SharedConstants.swift in Sources */,
 				4BF807B01BC83C2400D0D72B /* MenuScene.swift in Sources */,
+				4BF807B41BCAD25000D0D72B /* SpaceMan.swift in Sources */,
 				4BB634C61BB3299200A1D181 /* GameViewController.swift in Sources */,
 				4BB634C01BB3299200A1D181 /* AppDelegate.swift in Sources */,
+				4BF807B81BCAD75700D0D72B /* BlackHole.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -21,11 +21,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     let coreMotionManager = CMMotionManager()
     var xAxisAcceleration : CGFloat = 0.0
-    
-    let CollisionCategoryPlayer      : UInt32 = 0x1 << 1
-    let CollisionCategoryPowerUpOrbs : UInt32 = 0x1 << 2
-    let CollisionCategoryBlackHoles  : UInt32 = 0x1 << 3
-    
+        
     let engineExhaust : SKEmitterNode?
     var exhaustTimer : NSTimer?
 
@@ -70,20 +66,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         foregroundNode = SKSpriteNode()
         addChild(foregroundNode!)
     
-        // add the player
-        playerNode = SKSpriteNode(imageNamed: "Player")
-        
-        playerNode!.physicsBody =
-            SKPhysicsBody(circleOfRadius: playerNode!.size.width / 2)
-        playerNode!.physicsBody!.dynamic = false
-        
-        playerNode!.position = CGPoint(x: size.width / 2.0, y: 220.0)
-        playerNode!.physicsBody!.allowsRotation = false
-        playerNode!.physicsBody!.allowsRotation = false
-        playerNode!.physicsBody!.categoryBitMask = CollisionCategoryPlayer
-        playerNode!.physicsBody!.contactTestBitMask =
-            CollisionCategoryPowerUpOrbs | CollisionCategoryBlackHoles
-        playerNode!.physicsBody!.collisionBitMask = 0
+        playerNode = SpaceMan()
+        playerNode!.position = CGPoint(x: 160.0, y: 220.0)
         foregroundNode!.addChild(playerNode!)
     
         self.coreMotionManager.accelerometerUpdateInterval = 0.3
@@ -141,9 +125,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         var orbNodePosition = CGPoint(x: playerNode!.position.x, y: playerNode!.position.y + 100)
         var orbXShift : CGFloat = -1.0
     
-        for _ in 1...50 {
-            var orbNode = SKSpriteNode(imageNamed: "PowerUp")
-
+        for i in 0...49 {
+            
+            // new code to use an orb
+            var orbNode = Orb()
+            
             if orbNodePosition.x - (orbNode.size.width * 2) <= 0 {
                 orbXShift = 1.0
             }
@@ -155,49 +141,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             orbNodePosition.x += 40.0 * orbXShift
             orbNodePosition.y += 120
             orbNode.position = orbNodePosition
-            orbNode.physicsBody = SKPhysicsBody(circleOfRadius: orbNode.size.width / 2)
-            orbNode.physicsBody!.dynamic = false
-            orbNode.physicsBody!.categoryBitMask = CollisionCategoryPowerUpOrbs
-            orbNode.physicsBody!.collisionBitMask = 0
-            orbNode.name = "POWER_UP_ORB"
-            
-            foregroundNode!.addChild(orbNode)
+            self.foregroundNode!.addChild(orbNode)
         }
     }
     
+    
     func addBlackHolesToForeground() {
-        let textureAtlas = SKTextureAtlas(named: "sprites.atlas")
-        
-        let frame0 = textureAtlas.textureNamed("BlackHole0")
-        let frame1 = textureAtlas.textureNamed("BlackHole1")
-        let frame2 = textureAtlas.textureNamed("BlackHole2")
-        let frame3 = textureAtlas.textureNamed("BlackHole3")
-        let frame4 = textureAtlas.textureNamed("BlackHole4")
-        
-        let blackHoleTextures = [frame0, frame1, frame2, frame3, frame4]
-        
-        let animateAction =
-            SKAction.animateWithTextures(blackHoleTextures, timePerFrame: 0.2)
-        let rotateAction = SKAction.repeatActionForever(animateAction)
-        
-        let moveLeftAction = SKAction.moveToX(0.0, duration: 2.0)
-        let moveRightAction = SKAction.moveToX(size.width, duration: 2.0)
-        let actionSequence = SKAction.sequence([moveLeftAction, moveRightAction])
-        let moveAction = SKAction.repeatActionForever(actionSequence)
-        
+            
+        var moveLeftAction = SKAction.moveToX(0.0, duration: 2.0)
+        var moveRightAction = SKAction.moveToX(self.size.width, duration: 2.0)
+        var actionSequence = SKAction.sequence([moveLeftAction, moveRightAction])
+        var moveAction = SKAction.repeatActionForever(actionSequence)
+            
         for i in 1...10 {
-            var blackHoleNode = SKSpriteNode(imageNamed: "BlackHole0")
+            
+            // new black hole usage code
+            var blackHoleNode = BlackHole()
             
             blackHoleNode.position = CGPointMake(self.size.width - 80.0, 600.0 * CGFloat(i))
-            blackHoleNode.physicsBody =
-                SKPhysicsBody(circleOfRadius: blackHoleNode.size.width / 2)
-            blackHoleNode.physicsBody!.dynamic = false
-            blackHoleNode.physicsBody!.categoryBitMask = CollisionCategoryBlackHoles
-            blackHoleNode.physicsBody!.collisionBitMask = 0
-            blackHoleNode.name = "BLACK_HOLE"
-            
             blackHoleNode.runAction(moveAction)
-            blackHoleNode.runAction(rotateAction)
             
             foregroundNode!.addChild(blackHoleNode)
         }
