@@ -15,6 +15,7 @@
 		4BF807D71BCC396400D0D72B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BF807D61BCC396400D0D72B /* Images.xcassets */; };
 		4BF807DA1BCC396400D0D72B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BF807D81BCC396400D0D72B /* LaunchScreen.xib */; };
 		4BF807E61BCC396400D0D72B /* SuperSpaceMan3DTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF807E51BCC396400D0D72B /* SuperSpaceMan3DTests.swift */; };
+		4BF808121BCC3EF300D0D72B /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BF808111BCC3EF300D0D72B /* art.scnassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		4BF807DF1BCC396400D0D72B /* SuperSpaceMan3DTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuperSpaceMan3DTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BF807E41BCC396400D0D72B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4BF807E51BCC396400D0D72B /* SuperSpaceMan3DTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperSpaceMan3DTests.swift; sourceTree = "<group>"; };
+		4BF808111BCC3EF300D0D72B /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				4BF807CB1BCC396400D0D72B /* AppDelegate.swift */,
+				4BF808111BCC3EF300D0D72B /* art.scnassets */,
 				4BF807CD1BCC396400D0D72B /* GameScene.sks */,
 				4BF807CF1BCC396400D0D72B /* GameScene.swift */,
 				4BF807D11BCC396400D0D72B /* GameViewController.swift */,
@@ -200,6 +203,7 @@
 			files = (
 				4BF807DA1BCC396400D0D72B /* LaunchScreen.xib in Resources */,
 				4BF807D71BCC396400D0D72B /* Images.xcassets in Resources */,
+				4BF808121BCC3EF300D0D72B /* art.scnassets in Resources */,
 				4BF807CE1BCC396400D0D72B /* GameScene.sks in Resources */,
 				4BF807D51BCC396400D0D72B /* Main.storyboard in Resources */,
 			);
