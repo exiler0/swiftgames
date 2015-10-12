@@ -11,21 +11,20 @@ import SpriteKit
 
 class SpaceMan: SKSpriteNode {
     
-    override init() {
+    init(textureAtlas: SKTextureAtlas) {
     
-        let texture = SKTexture(imageNamed: "Player")
-        super.init(texture: texture,
-            color: UIColor.clearColor(),
-            size: texture.size())
-        self.physicsBody = SKPhysicsBody(circleOfRadius: self.size.width / 2)
-        self.physicsBody!.dynamic = false
-        self.physicsBody!.linearDamping = 1.0
-        self.physicsBody!.allowsRotation = false
+        let texture = textureAtlas.textureNamed("Player")
+        super.init(texture: texture, color: UIColor.clearColor(), size: texture.size())
     
-        self.physicsBody!.categoryBitMask = CollisionCategoryPlayer
-        self.physicsBody!.contactTestBitMask =
+        physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2)
+        physicsBody!.dynamic = false
+        physicsBody!.linearDamping = 1.0
+        physicsBody!.allowsRotation = false
+    
+        physicsBody!.categoryBitMask = CollisionCategoryPlayer
+        physicsBody!.contactTestBitMask =
             CollisionCategoryPowerUpOrbs | CollisionCategoryBlackHoles
-        self.physicsBody!.collisionBitMask = 0
+        physicsBody!.collisionBitMask = 0
     }
     
     required init?(coder aDecoder: NSCoder) {

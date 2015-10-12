@@ -11,23 +11,20 @@ import SpriteKit
 
 class BlackHole: SKSpriteNode {
     
-    override init() {
+    init(textureAtlas: SKTextureAtlas) {
     
-        let textureAtlas = SKTextureAtlas(named: "sprites.atlas")
-        
-        var frame0 = textureAtlas.textureNamed("BlackHole0")
-        var frame1 = textureAtlas.textureNamed("BlackHole1")
-        var frame2 = textureAtlas.textureNamed("BlackHole2")
-        var frame3 = textureAtlas.textureNamed("BlackHole3")
-        var frame4 = textureAtlas.textureNamed("BlackHole4")
-        
-        var blackHoleTextures = [frame0, frame1, frame2, frame3, frame4]
-        var animateAction =
+        let frame0 = textureAtlas.textureNamed("BlackHole0")
+        let frame1 = textureAtlas.textureNamed("BlackHole1")
+        let frame2 = textureAtlas.textureNamed("BlackHole2")
+        let frame3 = textureAtlas.textureNamed("BlackHole3")
+        let frame4 = textureAtlas.textureNamed("BlackHole4")
+    
+        let blackHoleTextures = [frame0, frame1, frame2, frame3, frame4];
+        let animateAction =
             SKAction.animateWithTextures(blackHoleTextures, timePerFrame: 0.2)
-        var rotateAction = SKAction.repeatActionForever(animateAction)
-            super.init(texture: frame0,
-            color: UIColor.clearColor(),
-            size: frame0.size())
+        let rotateAction = SKAction.repeatActionForever(animateAction)
+    
+        super.init(texture: frame0, color: UIColor.clearColor(), size: frame0.size())
     
         physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2)
         physicsBody!.dynamic = false

@@ -32,6 +32,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     let startGameTextNode = SKLabelNode(fontNamed: "Copperplate")
     
+    let textureAtlas = SKTextureAtlas(named: "sprites.atlas")
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -66,7 +68,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         foregroundNode = SKSpriteNode()
         addChild(foregroundNode!)
     
-        playerNode = SpaceMan()
+        self.playerNode = SpaceMan(textureAtlas: self.textureAtlas)
         playerNode!.position = CGPoint(x: 160.0, y: 220.0)
         foregroundNode!.addChild(playerNode!)
     
@@ -122,43 +124,46 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func addOrbsToForeground() {
-        var orbNodePosition = CGPoint(x: playerNode!.position.x, y: playerNode!.position.y + 100)
+            
+        var orbNodePosition =
+            CGPoint(x: playerNode!.position.x, y: playerNode!.position.y + 100)
         var orbXShift : CGFloat = -1.0
-    
+            
         for i in 0...49 {
             
             // new code to use an orb
-            var orbNode = Orb()
+            let orbNode = Orb(textureAtlas: self.textureAtlas)
             
             if orbNodePosition.x - (orbNode.size.width * 2) <= 0 {
                 orbXShift = 1.0
             }
             
-            if orbNodePosition.x + orbNode.size.width >= self.size.width {
+            if orbNodePosition.x + orbNode.size.width >= size.width {
                 orbXShift = -1.0
             }
             
             orbNodePosition.x += 40.0 * orbXShift
             orbNodePosition.y += 120
             orbNode.position = orbNodePosition
-            self.foregroundNode!.addChild(orbNode)
+            
+            foregroundNode!.addChild(orbNode)
         }
     }
     
     
+    
     func addBlackHolesToForeground() {
-            
+        
         var moveLeftAction = SKAction.moveToX(0.0, duration: 2.0)
-        var moveRightAction = SKAction.moveToX(self.size.width, duration: 2.0)
+        var moveRightAction = SKAction.moveToX(size.width, duration: 2.0)
         var actionSequence = SKAction.sequence([moveLeftAction, moveRightAction])
         var moveAction = SKAction.repeatActionForever(actionSequence)
-            
+        
         for i in 1...10 {
-            
             // new black hole usage code
-            var blackHoleNode = BlackHole()
+            let blackHoleNode = BlackHole(textureAtlas: textureAtlas)
             
-            blackHoleNode.position = CGPointMake(self.size.width - 80.0, 600.0 * CGFloat(i))
+            blackHoleNode.position = CGPoint(x: size.width - 80.0, y: 600.0 * CGFloat(i))
             blackHoleNode.runAction(moveAction)
             
             foregroundNode!.addChild(blackHoleNode)

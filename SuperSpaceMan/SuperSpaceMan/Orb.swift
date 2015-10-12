@@ -11,16 +11,14 @@ import SpriteKit
 
 class Orb: SKSpriteNode {
     
-    override init() {
+    init(textureAtlas: SKTextureAtlas) {
     
-        let texture = SKTexture(imageNamed: "PowerUp")
-        super.init(texture: texture,
-            color: UIColor.clearColor(),
-            size: texture.size())
+        let texture = textureAtlas.textureNamed("PowerUp")
+        super.init(texture: texture, color: UIColor.clearColor(), size: texture.size())
     
-        physicsBody =
-            SKPhysicsBody(circleOfRadius: self.size.width / 2)
+        physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2)
         physicsBody!.dynamic = false
+    
         physicsBody!.categoryBitMask = CollisionCategoryPowerUpOrbs
         physicsBody!.collisionBitMask = 0
         name = "POWER_UP_ORB"
