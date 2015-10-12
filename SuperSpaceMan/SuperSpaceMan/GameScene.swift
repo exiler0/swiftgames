@@ -125,28 +125,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func addOrbsToForeground() {
             
-        var orbNodePosition =
-            CGPoint(x: playerNode!.position.x, y: playerNode!.position.y + 100)
-        var orbXShift : CGFloat = -1.0
+        let orbPlistPath =
+            NSBundle.mainBundle().pathForResource("orbs", ofType: "plist")
+        let orbDataDictionary : NSDictionary? =
+            NSDictionary(contentsOfFile: orbPlistPath!)
             
-        for i in 0...49 {
+        if let positionDictionary = orbDataDictionary {
             
-            // new code to use an orb
-            let orbNode = Orb(textureAtlas: self.textureAtlas)
-            
-            if orbNodePosition.x - (orbNode.size.width * 2) <= 0 {
-                orbXShift = 1.0
-            }
-            
-            if orbNodePosition.x + orbNode.size.width >= size.width {
-                orbXShift = -1.0
-            }
-            
-            orbNodePosition.x += 40.0 * orbXShift
-            orbNodePosition.y += 120
-            orbNode.position = orbNodePosition
-            
-            foregroundNode!.addChild(orbNode)
+            let positions = positionDictionary.objectForKey("positions") as NSArray
+                
+            for position in positions {
+                
+                let orbNode = Orb(textureAtlas: textureAtlas)
+                let x = position.objectForKey("x") as CGFloat
+                let y = position.objectForKey("y") as CGFloat
+                    orbNode.position = CGPointMake(x, y)
+                    foregroundNode!.addChild(orbNode)
+                }
         }
     }
     
@@ -154,19 +149,33 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func addBlackHolesToForeground() {
         
-        var moveLeftAction = SKAction.moveToX(0.0, duration: 2.0)
-        var moveRightAction = SKAction.moveToX(size.width, duration: 2.0)
-        var actionSequence = SKAction.sequence([moveLeftAction, moveRightAction])
-        var moveAction = SKAction.repeatActionForever(actionSequence)
-        
-        for i in 1...10 {
-            // new black hole usage code
-            let blackHoleNode = BlackHole(textureAtlas: textureAtlas)
-            
-            blackHoleNode.position = CGPoint(x: size.width - 80.0, y: 600.0 * CGFloat(i))
-            blackHoleNode.runAction(moveAction)
-            
-            foregroundNode!.addChild(blackHoleNode)
+        let moveLeftAction =
+            SKAction.moveToX(0.0, duration: 2.0)
+        let moveRightAction =
+            SKAction.moveToX(size.width, duration: 2.0)
+        let actionSequence = SKAction.sequence([moveLeftAction, moveRightAction])
+        let moveAction = SKAction.repeatActionForever(actionSequence)
+        let blackHolePlistPath =
+            NSBundle.mainBundle().pathForResource("blackholes", ofType: "plist")
+        let blackHoleDataDictionary : NSDictionary? =
+            NSDictionary(contentsOfFile: blackHolePlistPath!)
+
+        if let positionDictionary = blackHoleDataDictionary {
+
+            let positions = positionDictionary.objectForKey("positions") as NSArray
+
+            for position in positions {
+
+                let blackHoleNode = BlackHole(textureAtlas: textureAtlas)
+
+                let x = position.objectForKey("x") as CGFloat
+                let y = position.objectForKey("y") as CGFloat
+                blackHoleNode.position = CGPointMake(x, y)
+
+                blackHoleNode.runAction(moveAction)
+
+                foregroundNode!.addChild(blackHoleNode)
+            }
         }
     }
     

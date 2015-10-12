@@ -23,6 +23,8 @@
 		4BF807B41BCAD25000D0D72B /* SpaceMan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF807B31BCAD25000D0D72B /* SpaceMan.swift */; };
 		4BF807B61BCAD3CC00D0D72B /* Orb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF807B51BCAD3CC00D0D72B /* Orb.swift */; };
 		4BF807B81BCAD75700D0D72B /* BlackHole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF807B71BCAD75700D0D72B /* BlackHole.swift */; };
+		4BF807BB1BCC24C200D0D72B /* blackholes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4BF807B91BCC24C200D0D72B /* blackholes.plist */; };
+		4BF807BC1BCC24C200D0D72B /* orbs.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4BF807BA1BCC24C200D0D72B /* orbs.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +58,8 @@
 		4BF807B31BCAD25000D0D72B /* SpaceMan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpaceMan.swift; sourceTree = "<group>"; };
 		4BF807B51BCAD3CC00D0D72B /* Orb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Orb.swift; sourceTree = "<group>"; };
 		4BF807B71BCAD75700D0D72B /* BlackHole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlackHole.swift; sourceTree = "<group>"; };
+		4BF807B91BCC24C200D0D72B /* blackholes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = blackholes.plist; path = "../../../../Google Drive/iOS Development Books/Swift Game Development/Beginning Swift Games Development for iOS/Swift 1.2 updated code/assets/blackholes.plist"; sourceTree = "<group>"; };
+		4BF807BA1BCC24C200D0D72B /* orbs.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = orbs.plist; path = "../../../../Google Drive/iOS Development Books/Swift Game Development/Beginning Swift Games Development for iOS/Swift 1.2 updated code/assets/orbs.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +124,8 @@
 		4BB634BD1BB3299200A1D181 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4BF807B91BCC24C200D0D72B /* blackholes.plist */,
+				4BF807BA1BCC24C200D0D72B /* orbs.plist */,
 				4BB634BE1BB3299200A1D181 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -224,10 +230,12 @@
 			files = (
 				4BB634CE1BB3299200A1D181 /* LaunchScreen.xib in Resources */,
 				4B50A9A51BC2E152006229E4 /* spark.png in Resources */,
+				4BF807BB1BCC24C200D0D72B /* blackholes.plist in Resources */,
 				4BB634CB1BB3299200A1D181 /* Images.xcassets in Resources */,
 				4B50A9A41BC2E152006229E4 /* EngineExhaust.sks in Resources */,
 				4B50EE401BB88DA8006C7C8D /* sprites.atlas in Resources */,
 				4BB634C91BB3299200A1D181 /* Main.storyboard in Resources */,
+				4BF807BC1BCC24C200D0D72B /* orbs.plist in Resources */,
 				4B62FF901BC5B777008BEAEA /* orb_pop.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
