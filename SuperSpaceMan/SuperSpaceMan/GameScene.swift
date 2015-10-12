@@ -268,6 +268,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
                 gameOverWithResult(false)
             }
+
+            removeOutOfSceneNodesWithName("BLACK_HOLE")
+            removeOutOfSceneNodesWithName("POWER_UP_ORB")
+                        
         }
     }
 
@@ -312,5 +316,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             score: score)
         view?.presentScene(menuScene, transition: transition)
     }
+    
+    func removeOutOfSceneNodesWithName(name: String) {
+
+        foregroundNode!.enumerateChildNodesWithName(name, usingBlock: {
+            node, stop in
+
+            if self.playerNode == nil {
+                
+                stop.memory = true
+            }
+            else if (self.playerNode!.position.y - node.position.y > self.size.height)
+            {
+                            
+                node!.removeFromParent()
+            }
+        })
+    }
+
 }
 
